@@ -1,0 +1,37 @@
+{
+  "name": "jaystring",
+  "version": "1.0.0",
+  "description": "Recursively generate JavaScript code from existing objects.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "lint": "jshint *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kklash/jaystring.git"
+  },
+  "keywords": [
+    "code",
+    "eval",
+    "object",
+    "compile",
+    "javascript",
+    "recursive",
+    "generate",
+    "generation"
+  ],
+  "author": "kklash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kklash/jaystring/issues"
+  },
+  "homepage": "https://github.com/kklash/jaystring#readme",
+  "devDependencies": {
+    "jshint": "2.11.0"
+  }
+}
