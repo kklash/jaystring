@@ -26,6 +26,12 @@ const stringify = {
 
   object: (obj) => {
     if (obj === null) return 'null'
+    if (typeof obj.toJayString === 'function') {
+      const compiled = obj.toJayString()
+      if (typeof compiled !== 'string')
+        throw new Error('Expected item.toJayString() to return evaluatable stringified item')
+      return compiled
+    }
     if (Array.isArray(obj)) return stringify.array(obj)
     if (obj instanceof Date) return stringify.date(obj)
     if (obj instanceof RegExp) return String(obj)
