@@ -32,17 +32,13 @@ const stringify = {
 
     const props = []
     for (const key in obj) {
-      props.push([key, jstring(obj[key])])
+      props.push([JSON.stringify(key), jstring(obj[key])])
     }
 
     return '{' + props.map(([key, value]) => `${key}:${value}`).join(',') + '}'
   },
 
-  symbol: (symbol) => {
-    if (symbol.description.includes('"'))
-      throw new Error('Cannot handle stringifying Symbols which use the quotes character')
-    return `Symbol("${symbol.description}")`
-  },
+  symbol: (symbol) => `Symbol(${JSON.stringify(symbol.description)})`,
 }
 
 function jstring(item) {

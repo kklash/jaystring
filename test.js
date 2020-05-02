@@ -21,13 +21,13 @@ function test(itemString) {
 }
 
 const fixtures = [
-  `{a:"b",c:true,d:42}`,
+  `{"a":"b","c":true,"d":42}`,
   'function foo() {}',
   '[true,() => "moo"]',
   // "{foo(){}}", Special case, cannot be tested but output should work
   '/regex/',
   'new Date(288482943)',
-  `{x:function x(){},symbol:Symbol("x")}`,
+  `{"x":function x(){},"symbol":Symbol("x")}`,
 ]
 
 fixtures.forEach(test)
