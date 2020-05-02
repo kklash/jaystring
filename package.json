@@ -1,6 +1,6 @@
 {
   "name": "jaystring",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Recursively generate JavaScript code from existing objects.",
   "main": "index.js",
   "files": [
