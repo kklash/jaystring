@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "node test.js",
-    "lint": "jshint *.js"
+    "lint": "jshint *.js",
+    "release": "./release.sh"
   },
   "repository": {
     "type": "git",
