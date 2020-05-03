@@ -50,8 +50,7 @@ const stringify = {
 function jstring(item) {
   const toString = stringify[typeof item]
   if (!toString) throw new Error(`Cannot stringify ${item} - unknown type ${typeof item}`)
-  const stringified = toString(item)
-  return stringified.replace(/ {2,}/g, '') // strip extra whitespace
+  return toString(item)
 }
 
 module.exports = jstring
