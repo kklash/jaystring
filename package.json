@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kklash/jaystring.git"
+    "url": "git+https://github.com/ExodusMovement/jaystring.git"
   },
   "keywords": [
     "code",
@@ -29,9 +29,9 @@
   "author": "kklash",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kklash/jaystring/issues"
+    "url": "https://github.com/ExodusMovement/jaystring/issues"
   },
-  "homepage": "https://github.com/kklash/jaystring#readme",
+  "homepage": "https://github.com/ExodusMovement/jaystring#readme",
   "devDependencies": {
     "jshint": "2.11.0"
   }
