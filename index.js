@@ -7,7 +7,7 @@ const stringify = {
   boolean: String,
   undefined: () => 'undefined',
 
-  array: (array) => '[' + array.map(jstring).join(',') + ']',
+  array: (array) => '[' + array.map(jaystring).join(',') + ']',
 
   date: (date) => `new Date(${date.getTime()})`,
 
@@ -38,7 +38,7 @@ const stringify = {
 
     const props = []
     for (const key in obj) {
-      props.push([JSON.stringify(key), jstring(obj[key])])
+      props.push([JSON.stringify(key), jaystring(obj[key])])
     }
 
     return '{' + props.map(([key, value]) => `${key}:${value}`).join(',') + '}'
@@ -47,10 +47,10 @@ const stringify = {
   symbol: (symbol) => `Symbol(${JSON.stringify(symbol.description)})`,
 }
 
-function jstring(item) {
+function jaystring(item) {
   const toString = stringify[typeof item]
   if (!toString) throw new Error(`Cannot stringify ${item} - unknown type ${typeof item}`)
   return toString(item)
 }
 
-module.exports = jstring
+module.exports = jaystring
