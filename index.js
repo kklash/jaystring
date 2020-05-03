@@ -2,9 +2,9 @@ const isArrowFnWithParensRegex = /^\([^)]*\) *=>/
 const isArrowFnWithoutParensRegex = /^[^=]*=>/
 
 const stringify = {
-  string: JSON.stringify,
-  number: String,
-  boolean: String,
+  string: (s) => JSON.stringify(s),
+  number: (n) => String(n),
+  boolean: (b) => String(b),
   undefined: () => 'undefined',
 
   array: (array) => '[' + array.map(jaystring).join(',') + ']',
@@ -26,12 +26,6 @@ const stringify = {
 
   object: (obj) => {
     if (obj === null) return 'null'
-    if (typeof obj.toJayString === 'function') {
-      const compiled = obj.toJayString()
-      if (typeof compiled !== 'string')
-        throw new Error('Expected item.toJayString() to return evaluatable stringified item')
-      return compiled
-    }
     if (Array.isArray(obj)) return stringify.array(obj)
     if (obj instanceof Date) return stringify.date(obj)
     if (obj instanceof RegExp) return String(obj)
@@ -48,6 +42,13 @@ const stringify = {
 }
 
 function jaystring(item) {
+  if (item != null && typeof item.toJayString === 'function') {
+    const compiled = item.toJayString()
+    if (typeof compiled !== 'string')
+      throw new Error('Expected item.toJayString() to return evaluatable stringified item')
+    return compiled
+  }
+
   const toString = stringify[typeof item]
   if (!toString) throw new Error(`Cannot stringify ${item} - unknown type ${typeof item}`)
   return toString(item)
