@@ -49,7 +49,8 @@ function jaystring(item) {
     return compiled
   }
 
-  const toString = stringify[typeof item]
+  const type = typeof item
+  const toString = stringify.hasOwnProperty(type) ? stringify[type] : null
   if (!toString) throw new Error(`Cannot stringify ${item} - unknown type ${typeof item}`)
   return toString(item)
 }
