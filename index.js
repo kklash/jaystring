@@ -1,6 +1,8 @@
 const isArrowFnWithParensRegex = /^\([^)]*\) *=>/
 const isArrowFnWithoutParensRegex = /^[^=]*=>/
 
+const stringifyFunction = Function.prototype.toString
+
 const stringify = {
   string: (s) => JSON.stringify(s),
   number: (n) => String(n),
@@ -12,7 +14,7 @@ const stringify = {
   date: (date) => `new Date(${date.getTime()})`,
 
   function: (func) => {
-    const stringified = func.toString()
+    const stringified = stringifyFunction.call(func)
     if (func.prototype) return stringified // normal function
     if (
       isArrowFnWithParensRegex.test(stringified) ||
