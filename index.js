@@ -2,6 +2,7 @@ const isArrowFnWithParensRegex = /^\([^)]*\) *=>/
 const isArrowFnWithoutParensRegex = /^[^=]*=>/
 
 const stringifyFunction = Function.prototype.toString
+const toJayString = Symbol('toJayString')
 
 const stringify = {
   string: (s) => JSON.stringify(s),
@@ -44,10 +45,10 @@ const stringify = {
 }
 
 function jaystring(item) {
-  if (item != null && typeof item.toJayString === 'function') {
-    const compiled = item.toJayString()
+  if (item != null && typeof item[toJayString] === 'function') {
+    const compiled = item[toJayString]()
     if (typeof compiled !== 'string')
-      throw new Error('Expected item.toJayString() to return evaluatable stringified item')
+      throw new Error('Expected item[toJayString]() to return evaluatable stringified item')
     return compiled
   }
 
@@ -57,4 +58,5 @@ function jaystring(item) {
   return toString(item)
 }
 
+jaystring.toJayString = toJayString
 module.exports = jaystring

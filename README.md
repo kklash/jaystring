@@ -28,7 +28,7 @@ console.log(jaystring(object))
 
 ## Custom Type Stringification
 
-If you have types which `jaystring` doesn't understand, you can declare a `.toJayString()` method on their instances, which will be called when passed to `jaystring`. if `.toJayString()` doesn't return a string, the conversion will fail and throw an error.
+If you have types which `jaystring` doesn't understand, you can declare a Symbol-identified method on their instances, which will be called when passed to `jaystring`. if this method doesn't return a string, the conversion will fail and throw an error.
 
 Example:
 
@@ -36,7 +36,7 @@ Example:
 const jaystring = require('jaystring')
 
 // window.URL class evaluative stringification
-URL.prototype.toJayString = function() {
+URL.prototype[jaystring.toJayString] = function() {
   return `new URL(${JSON.stringify(this)})`
 }
 
